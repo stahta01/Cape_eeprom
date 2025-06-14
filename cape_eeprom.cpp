@@ -395,6 +395,7 @@ int CapeEeprom::_ParseLineData(char* cmd, char* c, SerialNumber &serialNumber) {
 			}
 		}
 	} 
+	return 0;
 }
 
 CapeEeprom::CapeEeprom(const std::string inFile) {
