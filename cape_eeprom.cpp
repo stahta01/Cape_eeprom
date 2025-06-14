@@ -322,12 +322,7 @@ int CapeEeprom::_ParseLineData(char* cmd, char* c, SerialNumber &serialNumber) {
 		sscanf(c, "%100s %4d", cmd, &paramValue);
 		_WriteUint16BE(dc, paramValue);
 	} else if (strcmp(cmd, "pinconfig")==0) {
-		#ifdef linux
 		sscanf(c, "%20s %19s %d %19s %19s %19s %19s", cmd, pin, &mode, slew, dir, pull, rx);
-		#else
-		sscanf(c, "%50s %19s %19s %19s %19s %19s %19s", cmd, pin, modes, slew, dir, pull, rx);
-		sscanf(modes, "%d", &mode);
-		#endif
 		int i = 0,j = 0;
 		sscanf(pin, "%*[Pp]%d%*[_]%d", &i, &j);
 		//printf("%s, %s, %d, %s, %s, %s, %s %d %d\n", cmd, pin, mode, slew, dir, pull, rx, i, j);
