@@ -30,7 +30,7 @@ class CapeEeprom
 public:
 	CapeEeprom(const std::string inFile);
 	int Write(const char *fname);
-	int Print();
+	int Print(bool pincfg = false);
 	int Dump();
 	std::string GetBoardName();
 	std::string GetPartNumber();

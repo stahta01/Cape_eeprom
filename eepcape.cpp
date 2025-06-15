@@ -33,17 +33,18 @@ along with Cape_eeprom.  If not, see <http://www.gnu.org/licenses/>.
 
 int main (int argc, char *argv[])
 {
-    bool print = false, dump = false, nOpt = false;
+    bool print = false, dump = false, pincfg = false, nOpt = false;
     int opt;
 	unsigned int bn;
 
-    while ((opt = getopt(argc, argv, "pdn:")) != -1) {
+    while ((opt = getopt(argc, argv, "pcdn:")) != -1) {
         switch (opt) {
         case 'p': print = true; break;
+        case 'c': pincfg = true; break;
         case 'd': dump = true; break;
 		case 'n': nOpt = (sscanf(optarg, "%04d \n", &bn) == 1); break;
         default:
-            fprintf(stderr, "Usage: %s [-pd] [-nboard number] [input file] [output file]\n", argv[0]);
+            fprintf(stderr, "Usage: %s [-pcd] [-nboard number] [input file] [output file]\n", argv[0]);
             exit(EXIT_FAILURE);
         }
     }
@@ -58,7 +59,7 @@ int main (int argc, char *argv[])
 		i++;
 	}
 	if (!fnArgCount) {
-        fprintf(stderr, "Usage: %s [-pd] [-nboard number] [input file] [output file]\n", argv[0]);
+        fprintf(stderr, "Usage: %s [-pcd] [-nboard number] [input file] [output file]\n", argv[0]);
         exit(EXIT_FAILURE);
 	}
 	
@@ -99,7 +100,7 @@ int main (int argc, char *argv[])
 	}
 
 	// Print parsed data to screen
-	if (print) cape.Print();
+	if (print) cape.Print(pincfg);
 
 	// Dump parsed data to screen
 	if (dump) cape.Dump(); 

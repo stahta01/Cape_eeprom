@@ -156,7 +156,7 @@ int CapeEeprom::Write(const char *fname)
   return 0;
 }
 
-int CapeEeprom::Print()
+int CapeEeprom::Print(bool pincfg)
 {
 	printf ("#####################################################\n");
 	printf ("Cape Name         : %.32s\n", _GetAsciiParam(bname, 32).c_str());
@@ -186,7 +186,10 @@ int CapeEeprom::Print()
 			}
 			std::string pull = pinconfig & PINPULL_UP ? "PULL_UP" : "PULL_DOWN";
 			std::string rx = pinconfig & PINRX_ENABLE ? "RX_ENABLE" : "RX_DISABLE";
-		    printf("%-7s%d  %-7s%-8s%-11s%s\n", pin.c_str(), mode, slew.c_str(), dir.c_str(), pull.c_str(), rx.c_str());
+			if(pincfg)
+				printf("pinconfig %-7s%2d  %-7s%-8s%-11s%s\n", pin.c_str(), mode, slew.c_str(), dir.c_str(), pull.c_str(), rx.c_str());
+			else
+				printf("%-7s%d  %-7s%-8s%-11s%s\n", pin.c_str(), mode, slew.c_str(), dir.c_str(), pull.c_str(), rx.c_str());
 	  }
   }
   printf ("\n");

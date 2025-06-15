@@ -9,11 +9,12 @@ Cape_eeprom Generator is a command line tool to easily generate EEPROM files for
 
 Input Arguments:
 ------------------------------
-eepcape [-pd] [-nboard number] [input file] [output file]<br>
+eepcape [-pcd] [-nboard number] [input file] [output file]<br>
 
 [input file]         	: Input settings text file path<br>
 [output file]        	: Output binary file path<br>
 [-p]					: Print parsed data to screen<br>
+[-pc]					: Print parsed data to screen with pinconfig<br>
 [-d]					: Dump binary EEPROM data to screen<br>
 [-nboard number]		: Board number, overrides board number specified in input file<br>
 
